@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-//const socket = io.connect("https://online-chat-900l.onrender.com");
-const socket = io.connect("http://localhost:7000");
+const socket = io.connect("https://game-api-eqjj.onrender.com");
+// const socket = io.connect("http://localhost:7000");
 
 const Game = () => {
     const { search } = useLocation();
