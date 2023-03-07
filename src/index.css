@@ -34,6 +34,6 @@ code {
 } */
 
 #root {
-  background-image: url("../public/neon3.avif");
+  background-image: url("./styles/neon3.avif");
   background-size: cover;
 }
