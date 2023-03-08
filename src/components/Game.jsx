@@ -3,9 +3,11 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import styles from "../styles/Main.module.css";
+import Button from 'react-bootstrap/Button';
 
-const socket = io.connect("https://game-api-eqjj.onrender.com");
-// const socket = io.connect("http://localhost:7000");
+// const socket = io.connect("https://game-api-eqjj.onrender.com");
+const socket = io.connect("http://localhost:7000");
 
 const Game = () => {
     const { search } = useLocation();
@@ -14,7 +16,8 @@ const Game = () => {
     // const [state, setState] = useState([]);
     // const [message, setMessage] = useState("");
     // const [isOpen, setOpen] = useState(false);
-    const [users, setUsers] = useState(0);
+    const [users, setUsers] = useState([]);
+    const [participants, setParticipants] = useState(0);
   
     useEffect(() => {
       const searchParams = Object.fromEntries(new URLSearchParams(search));
@@ -30,7 +33,9 @@ const Game = () => {
   
     useEffect(() => {
       socket.on("room", ({ data: { users } }) => {
-        setUsers(users.length);
+        setParticipants(users.length);
+        setUsers(users);
+        console.log(users)
       });
     }, []);
   
@@ -53,55 +58,58 @@ const Game = () => {
   
     // const onEmojiClick = ({ emoji }) => setMessage(`${message} ${emoji}`);
   
+
+
+
+
+
+    
     return (
-        <>
-      {/* <div className={styles.wrap}>
-        <div className={styles.header}>
-          <div className={styles.title}>{params.room}</div> */}
+        
+       <div className={styles.wrap}>
+        {/* <div className={styles.header}>
+          <div className={styles.title}>{params.room}</div>  */}
           <div 
         //   className={styles.users}
-          >{users} users in this room</div>
-          <button 
+          >{participants} users in this room. </div>
+
+          <Button className={styles.btn_leave}
         //   className={styles.left} 
           onClick={leftRoom}>
-            Left the room
-          </button>
+            Leave the room
+          </Button>
         {/* </div> */}
+<div className={styles.welcome}>
+{users.map(user => (
+               <p> Welcome to the game {user.name}!</p>
+            ))}
+            {users.length<2? "Waiting for another participant":""}
+</div>
+       
   
-        {/* <div className={styles.messages}> */}
-          {/* <Messages messages={state} name={params.name} /> */}
-        {/* </div> */}
-  
-        {/* <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.input}>
-            <input
-              type="text"
-              name="message"
-              placeholder="What do you want to say?"
-              value={message}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-          </div>
-          <div className={styles.emoji}>
-            <img src={icon} alt="" onClick={() => setOpen(!isOpen)} />
-  
-            {isOpen && (
-              <div className={styles.emojies}>
-                <EmojiPicker onEmojiClick={onEmojiClick} />
-              </div>
-            )}
-          </div>
-  
-          <div className={styles.button}>
-            <input type="submit" onSubmit={handleSubmit} value="Send a message" />
-          </div>
-        </form>
-      </div> */}
-    {/* ); */}
+<h1>Tic-Tac-Toe</h1>
+    <div class="play-area">
+      <div id="block_0" class="block"></div>
+      <div id="block_1" class="block"></div>
+      <div id="block_2" class="block"></div>
+      <div id="block_3" class="block"></div>
+      <div id="block_4" class="block"></div>
+      <div id="block_5" class="block"></div>
+      <div id="block_6" class="block"></div>
+      <div id="block_7" class="block"></div>
+      <div id="block_8" class="block"></div>
+    </div>
+ 
 
-    </>)
+
+
+
+
+    
+    </div>
+    )
   };
   
   export default Game;
+
+  

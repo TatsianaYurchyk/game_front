@@ -1,6 +1,7 @@
 .wrap {
     width: 100%;
     height: 100vh;
+    color: rgb(226, 185, 219);
     
   }
   
@@ -56,6 +57,11 @@
   }
     .buttonr:hover {
      scale: 1.2;
+    }
+
+    .btn_leave{
+      background-color: rgb(134, 14, 233)!important;
+      border: none!important;
     }
  
     
