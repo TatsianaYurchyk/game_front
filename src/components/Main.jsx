@@ -33,12 +33,6 @@ const Main = () => {
       <div className={styles.container}>
         <h1 className={styles.heading}>TIC TAC TOE</h1>
 
-        {/* <form className={styles.form}>
-          <div className={styles.group}> */}
-    {/* <Container  > */}
-        
-            {/* <h1 className="text-center"> TIC-TAC-TOE!</h1>
-            <div className="center" > */}
     <Form >
     <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Username</Form.Label>
@@ -46,7 +40,7 @@ const Main = () => {
      name="name"
      value={values[NAME]}
      placeholder="Enter Username"
-   //   className={styles.input}
+
      onChange={handleChange}
      autoComplete="off"
      required
@@ -67,7 +61,6 @@ const Main = () => {
     </Form.Group>       
 
           <Link
-            // className={styles.group}
             onClick={handleClick}
             to={`/game?name=${values[NAME]}&room=${values[ROOM]}`}
           >
@@ -76,9 +69,7 @@ const Main = () => {
       </Button>
            
           </Link>
-    {/* //     </form> */}
-    {/* //   </div>
-    // </div> */}
+
     </Form>
     </div>
     </div>
